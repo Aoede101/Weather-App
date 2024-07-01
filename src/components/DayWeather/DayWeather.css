@@ -11,17 +11,24 @@ section[id="day"] {
   grid-template-rows: 5px 70vh 4px 65vh;
 }
 
+section[id="day"]::-webkit-scrollbar {
+  display: none;
+}
+
 .line {
   height: 5px;
   width: 100%;
   position: sticky;
   top: 0;
-  background-color: #888888aa;
+  /*   background-color: #888888aa;
+  */
+  background-color: #d8d8d8aa;
 }
 
 .day-container {
   width: min(500px, 100%);
   display: grid;
+  grid-template-rows: 0.8fr repeat(6, 1fr);
   height: 100%;
   padding: 2rem;
 }
@@ -81,4 +88,9 @@ section[id="day"] {
 .forecast-item .middle-col {
   margin-right: auto;
   text-align: left;
+}
+
+.forecast-item i {
+  font-size: 2rem;
+  padding-right: 1rem;
 }

@@ -1,103 +1,78 @@
 import "./App.css"
-import NavBar from "./components/NavBar"
-import CurrentWeather from "./components/CurrentWeather"
+import NavBar from "./components/NavBar/NavBar"
+import CurrentWeather from "./components/CurrentWeather/CurrentWeather"
 import DayWeather from "./components/DayWeather/DayWeather"
 import { useState, useEffect } from "react"
-import getWeatherData from "./weatherAPI"
+import { CirclesWithBar } from "react-loader-spinner"
+
 function App() {
+  const [location, setLocation] = useState({
+    status: null,
+    city: null,
+    lat: 0,
+    lon: 0,
+    timezone: null,
+  })
   const [weather, setWeather] = useState({
-    location: {
-      name: "San Francisco, CA",
-      lat: "37.777",
-      long: "-122.42",
-      timezone: "-7",
-      alert: "",
-      degreetype: "F",
-      imagerelativeurl:
-        "http://blob.weather.microsoft.com/static/weather4/en-us/",
-    },
-    current: {
-      temperature: "70",
-      skycode: "32",
-      skytext: "Sunny",
-      date: "2017-03-14",
-      observationtime: "13:15:00",
-      observationpoint: "San Francisco, California",
-      feelslike: "70",
-      humidity: "59",
-      winddisplay: "3 mph West",
-      day: "Tuesday",
-      shortday: "Tue",
-      windspeed: "3 mph",
-      imageUrl:
-        "http://blob.weather.microsoft.com/static/weather4/en-us/law/32.gif",
-    },
-    forecast: [
-      {
-        low: "52",
-        high: "69",
-        skycodeday: "31",
-        skytextday: "Clear",
-        date: "2017-03-13",
-        day: "Monday",
-        shortday: "Mon",
-        precip: "",
-      },
-      {
-        low: "52",
-        high: "70",
-        skycodeday: "34",
-        skytextday: "Mostly Sunny",
-        date: "2017-03-14",
-        day: "Tuesday",
-        shortday: "Tue",
-        precip: "10",
-      },
-      {
-        low: "56",
-        high: "63",
-        skycodeday: "26",
-        skytextday: "Cloudy",
-        date: "2017-03-15",
-        day: "Wednesday",
-        shortday: "Wed",
-        precip: "20",
-      },
-      {
-        low: "50",
-        high: "64",
-        skycodeday: "28",
-        skytextday: "Mostly Cloudy",
-        date: "2017-03-16",
-        day: "Thursday",
-        shortday: "Thu",
-        precip: "10",
-      },
-      {
-        low: "53",
-        high: "67",
-        skycodeday: "32",
-        skytextday: "Sunny",
-        date: "2017-03-17",
-        day: "Friday",
-        shortday: "Fri",
-        precip: "10",
-      },
-    ],
+    timezone: "",
   })
 
+  async function getLocation() {
+    const response = await fetch("http://ip-api.com/json/")
+    const data = await response.json()
+    setLocation({
+      status: data.status,
+      city: data.city,
+      lat: data.lat,
+      lon: data.lon,
+      timezone: data.timezone,
+    })
+  }
+  async function getWeather() {
+    const timezone = location.timezone.split("/")
+    const response = await fetch(
+      `https://api.open-meteo.com/v1/forecast?latitude=${location.lat}&longitude=${location.lat}&current=temperature_2m,relative_humidity_2m,is_day,rain,weather_code,cloud_cover,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,rain_sum&timezone=${timezone[0]}%2F${timezone[1]}&past_days=1&forecast_days=4`
+    )
+    const data = await response.json()
+    setWeather(data)
+  }
+
   useEffect(() => {
-    console.log(getWeatherData())
+    getLocation()
   }, [])
 
-  return (
+  useEffect(() => {
+    if (location.status) getWeather()
+  }, [location])
+
+  useEffect(() => {
+
+  }, [weather])
+
+  return weather.timezone ? (
     <>
       <NavBar />
       <main>
-        <CurrentWeather weather={weather} />
+        <CurrentWeather weather={weather} location={location} />
         <DayWeather weather={weather} />
       </main>
     </>
+  ) : (
+    <div
+      style={{
+        position: "fixed",
+        top: "50%",
+        left: "50%",
+        translate: "-50% -50%",
+      }}
+    >
+      <CirclesWithBar
+        height="150"
+        width="150"
+        color="#fff"
+        ariaLabel="circles-with-bar-loading"
+      />
+    </div>
   )
 }
 

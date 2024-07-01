@@ -1,4 +1,5 @@
-import SearchBar from "./SearchBar/SearchBar"
+import SearchBar from "../SearchBar/SearchBar"
+import "./NavBar.css"
 
 export default function NavBar() {
   return (
