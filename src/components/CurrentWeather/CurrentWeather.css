@@ -25,6 +25,6 @@ section[id="current"] {
 }
 #current .status {
   grid-row: 1/3;
-  place-self: center;
+  place-self: center start;
   font-size: 2.5rem;
 }

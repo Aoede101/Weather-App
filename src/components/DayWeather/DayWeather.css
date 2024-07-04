@@ -3,12 +3,12 @@ section[id="day"] {
   color: #fff;
   width: 100vw;
   position: absolute;
-  height: 70vh;
-  top: 30vh;
+  height: 70dvh;
+  top: 30dvh;
   overflow-y: scroll;
   display: grid;
   place-items: center;
-  grid-template-rows: 5px 70vh 4px 65vh;
+  grid-template-rows: 5px 70dvh 4px 65dvh;
 }
 
 section[id="day"]::-webkit-scrollbar {
