@@ -6,25 +6,23 @@ import { useState, useEffect } from "react"
 import { CirclesWithBar } from "react-loader-spinner"
 
 function App() {
-  const [location, setLocation] = useState({
-    status: null,
-    city: null,
-    lat: 0,
-    lon: 0,
-    timezone: null,
-  })
+  const [location, setLocation] = useState({})
   const [weather, setWeather] = useState({
     timezone: "",
   })
 
   async function getLocation() {
-    const response = await fetch("http://ip-api.com/json/")
+    const response = await fetch("https://ipapi.co/json/")
+    if (!response.ok) {
+      const message = `An error has occured: ${response.status}`
+      throw new Error(message)
+    }
     const data = await response.json()
+    console.log(data)
     setLocation({
-      status: data.status,
       city: data.city,
-      lat: data.lat,
-      lon: data.lon,
+      lat: data.latitude,
+      lon: data.longitude,
       timezone: data.timezone,
     })
   }
@@ -42,11 +40,13 @@ function App() {
   }, [])
 
   useEffect(() => {
-    if (location.status) getWeather()
+    console.log(location)
+    if (location.city) getWeather()
   }, [location])
 
   useEffect(() => {
-
+    console.log("weather")
+    console.log(weather)
   }, [weather])
 
   return weather.timezone ? (
