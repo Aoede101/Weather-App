@@ -1,8 +1,7 @@
 
 # COMING FEATURES
 
-* fix currentDay component layout --
-* error handling
+* error handling -- 
 * interactive background image
 * interactive icon
 * search location feature
