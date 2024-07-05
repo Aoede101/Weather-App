@@ -18,7 +18,6 @@ function App() {
       throw new Error(message)
     }
     const data = await response.json()
-    console.log(data)
     setLocation({
       city: data.city,
       lat: data.latitude,
@@ -40,14 +39,9 @@ function App() {
   }, [])
 
   useEffect(() => {
-    console.log(location)
     if (location.city) getWeather()
   }, [location])
 
-  useEffect(() => {
-    console.log("weather")
-    console.log(weather)
-  }, [weather])
 
   return weather.timezone ? (
     <>
