@@ -1,0 +1,36 @@
+/* || MIDIUM SCREEN */
+
+@media screen and (min-width: 600px) {
+  section[id="current"] {
+    height: 25%;
+  }
+  section[id="day"] {
+    height: 75%;
+  }
+
+  .current-container {
+    margin: auto 0 1.5rem 2rem;
+  }
+}
+
+/* || LARGE SCREEN */
+
+@media screen and ((min-width: 920px)) {
+  main {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+  }
+
+  section[id="current"] {
+    height: 100%;
+    padding: 5rem;
+  }
+  .current-container .degree {
+    background-color: pink;
+    font-size: 1px;
+  }
+
+  section[id="day"] {
+  }
+}

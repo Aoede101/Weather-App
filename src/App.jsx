@@ -4,6 +4,7 @@ import CurrentWeather from "./components/CurrentWeather/CurrentWeather"
 import DayWeather from "./components/DayWeather/DayWeather"
 import { useState, useEffect } from "react"
 import { CirclesWithBar } from "react-loader-spinner"
+import "./mediaQueries.css"
 
 function App() {
   const [location, setLocation] = useState({})

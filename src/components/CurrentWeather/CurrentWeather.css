@@ -1,14 +1,12 @@
 section[id="current"] {
   color: aliceblue;
   display: flex;
-  height: 100%;
+  height: 20%;
 }
 
 .current-container {
   width: min(90vw, 350px);
   margin: auto 0 1rem 1rem;
-
-  align-self: end;
   display: grid;
   grid-template: auto auto/repeat(3, auto);
 }

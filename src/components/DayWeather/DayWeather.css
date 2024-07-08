@@ -1,14 +1,12 @@
 section[id="day"] {
   backdrop-filter: blur(10px);
   color: #fff;
-  width: 100vw;
-  position: absolute;
-  height: 70dvh;
+  height: 80%;
   top: 30dvh;
   overflow-y: scroll;
   display: grid;
   place-items: center;
-  grid-template-rows: 5px 70dvh 4px 65dvh;
+  grid-template-rows: 5px 100% 4px 90%;
 }
 
 section[id="day"]::-webkit-scrollbar {
