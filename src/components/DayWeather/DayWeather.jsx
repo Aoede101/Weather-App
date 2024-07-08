@@ -9,6 +9,8 @@ import {
   faSnowflake,
 } from "@fortawesome/free-solid-svg-icons"
 import getWeatherIcon from "../../weatherCodes"
+import "../../mediaQueries.css"
+
 
 export default function DayWeather({ weather }) {
   const dailyWeather = weather.daily

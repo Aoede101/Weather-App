@@ -7,7 +7,7 @@ export default function NavBar() {
       <a href="/" className="logo">
         Weather
       </a>
-      <SearchBar />
+      {/* <SearchBar /> */}
     </nav>
   )
 }

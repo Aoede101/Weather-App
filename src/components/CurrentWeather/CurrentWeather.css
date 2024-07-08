@@ -9,6 +9,7 @@ section[id="current"] {
   margin: auto 0 1rem 1rem;
   display: grid;
   grid-template: auto auto/repeat(3, auto);
+  width: fit-content;
 }
 
 #current .degree {

@@ -24,10 +24,7 @@ export default function CurrentWeather({ weather, location }) {
   return (
     <section id="current">
       <div className="current-container">
-        <div className="degree">
-          {Math.round(current.temperature_2m)}
-          {currentUnits.temperature_2m}
-        </div>
+        <div className="degree">{Math.round(current.temperature_2m)}° </div>
         <div className="city">{location.city}</div>
         <div className="time">{time}</div>
         <div className="status">

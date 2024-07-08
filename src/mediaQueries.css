@@ -9,6 +9,7 @@
   }
 
   .current-container {
+    column-gap: 0.8rem;
     margin: auto 0 1.5rem 2rem;
   }
 }
@@ -26,11 +27,29 @@
     height: 100%;
     padding: 5rem;
   }
-  .current-container .degree {
-    background-color: pink;
-    font-size: 1px;
+  .current-container {
+    column-gap: 1rem;
+  }
+
+  #current .degree {
+    font-size: 7rem;
+  }
+  #current .city {
+    font-size: 3rem;
+  }
+  #current .status {
+    font-size: 4rem;
+  }
+  #current .time {
+    font-size: 1.2rem;
   }
 
   section[id="day"] {
+    height: 100%;
+    grid-template-rows: 100% 4px 90%;
+  }
+
+  #day .line {
+    display: none;
   }
 }
